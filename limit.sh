@@ -56,6 +56,7 @@ cat <<-EOF
 3.搭建官方版本的V2ray(By v2fly)
 4.搭建第三方版本V2ray(By 233Boy)
 5.一键搭建Gost隧道
+6.功能暂无
 
 ########## Welcome Limitauto V0.1 ##########
 
