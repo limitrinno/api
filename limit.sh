@@ -54,6 +54,8 @@ cat <<-EOF
 1.查询自己本机的IP
 2.查询本机系统配置
 3.搭建官方版本的V2ray(By v2fly)
+4.搭建第三方版本V2ray(By 233Boy)
+5.一键搭建Gost隧道
 
 ########## Welcome Limitauto V0.1 ##########
 
