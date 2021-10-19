@@ -46,17 +46,29 @@ yum makecache && yum -y install curl
 bash <(curl -s -L https://git.io/v2ray.sh)
 }
 
+dockerinstall(){
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce docker-ce-cli containerd.io -y
+systemctl enable docker
+systemctl restart docke
+echo "Docker 安装完成"
+}
+
 # 主界面
 menu(){
 cat <<-EOF
 ########## Welcome Limitauto V0.1 ##########
+
+目前暂时只支持Centos
 
 1.查询自己本机的IP
 2.查询本机系统配置
 3.搭建官方版本的V2ray(By v2fly)
 4.搭建第三方版本V2ray(By 233Boy)
 5.一键搭建Gost隧道
-6.功能暂无
+6.一键安装Docker(最简单的版本)
+7.国内一键测速脚本(By coolaj)
 
 ########## Welcome Limitauto V0.1 ##########
 
@@ -81,6 +93,12 @@ case $num in
 	;;
 	5)
 	yum -y install wget && wget https://raw.githubusercontent.com/limitrinno/limit/master/gost/gost.sh && chmod +x gost.sh && bash gost.sh && rm -rf gost.sh
+	;;
+	6)
+	dockerinstall
+	;;
+	7)
+	bash <(curl -Lso- https://git.io/Jlkmw)
 	;;
 	*)
 	echo "不存在的命令！重新执行"
