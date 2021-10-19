@@ -69,6 +69,9 @@ cat <<-EOF
 5.一键搭建Gost隧道
 6.一键安装Docker(最简单的版本)
 7.国内一键测速脚本(By coolaj)
+8.检测服务器配置以及IO国内节点测速(By oooldking)
+9.检测服务器网络信息以及相关流媒体设置(完整版 By LemonBenchIntl)
+10.检测服务器网络信息以及相关流媒体设置(快速版 By LemonBenchIntl)
 
 ########## Welcome Limitauto V0.1 ##########
 
@@ -99,6 +102,15 @@ case $num in
 	;;
 	7)
 	bash <(curl -Lso- https://git.io/Jlkmw)
+	;;
+	8)
+	yum -y install curl && curl -Lso- -no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash	
+	;;
+	9)
+	yum -y install curl && curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s full
+	;;
+	10)
+	yum -y install curl && curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
 	;;
 	*)
 	echo "不存在的命令！重新执行"
