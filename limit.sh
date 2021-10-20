@@ -72,6 +72,7 @@ cat <<-EOF
 8.检测服务器配置以及IO国内节点测速(By oooldking)
 9.检测服务器网络信息以及相关流媒体设置(完整版 By LemonBenchIntl)
 10.检测服务器网络信息以及相关流媒体设置(快速版 By LemonBenchIntl)
+11.一键开启BBR(By 秋水逸冰)
 
 ########## Welcome Limitauto V0.1 ##########
 
@@ -111,6 +112,9 @@ case $num in
 	;;
 	10)
 	yum -y install curl && curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
+	;;
+	11)
+	yum -y install wget && wget --no-check-certificate -O /opt/bbr.sh https://github.com/teddysun/across/raw/master/bbr.sh && chmod 755 /opt/bbr.sh && /opt/bbr.sh
 	;;
 	*)
 	echo "不存在的命令！重新执行"
