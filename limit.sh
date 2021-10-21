@@ -60,9 +60,9 @@ echo "正在配置"
 read -p "请输入的局域网IP:(默认IP为192.168.10.1)" ip
 ip=${ip:-192.168.10.1}
 read -p "请输入Socks5的端口:(默认端口为7890)" sport
-sport=${sport:-7890}
+sport=${sport:-19520}
 read -p "请输入Http的端口:(默认端口为7890)" hport
-hport=${hport:-7890}
+hport=${hport:-19520}
 touch /root/bashsocks5.sh && chmod o+x bashsocks5.sh
 echo "export ALL_PROXY=socks5://$ip:$sport" >> /root/bashsocks5.sh && echo "export http_proxy="http://$ip:$hport"" >> /root/bashsocks5.sh && echo "export https_proxy="https://$ip:$hport"" >> /root/bashsocks5.sh
 clear && echo "正在应用临时的配置文件" 
