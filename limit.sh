@@ -55,6 +55,22 @@ systemctl restart docke
 echo "Docker 安装完成"
 }
 
+addsocks(){
+echo "开始配置Socks5"
+read -p "输入IP地址:(Default:120.79.15.130)" ip
+ip=${ip:-120.79.15.130}
+read -p "请输入Socks5端口:(Default:7890)" socks5port
+socks5port=${socks5port:-19520}
+read -p "请输入Http/Https端口:(Default:7890)" httpport
+httpport=${httpport:-19520}
+cat <<EOF > socks5.sh
+export ALL_PROXY=socks5://$ip:$socks5port
+export http_proxy="http://$ip:$httpport"
+export https_proxy="https://$ip:$httpport"
+EOF
+source /root/socks5.sh && chmod +x /root/socks5.sh && sh /root/socks5.sh && rm -rf socks5.sh && curl cip.cc && echo "检查代理地址是否正常,重新登录即可清除临时Socks设置"
+}
+
 # 主界面
 menu(){
 cat <<-EOF
@@ -73,6 +89,7 @@ cat <<-EOF
 9.检测服务器网络信息以及相关流媒体设置(完整版 By LemonBenchIntl)
 10.检测服务器网络信息以及相关流媒体设置(快速版 By LemonBenchIntl)
 11.一键开启BBR(By 秋水逸冰)
+12.添加临时Socsk
 
 ########## Welcome Limitauto V0.1 ##########
 
@@ -115,6 +132,9 @@ case $num in
 	;;
 	11)
 	yum -y install wget && wget --no-check-certificate -O /opt/bbr.sh https://github.com/teddysun/across/raw/master/bbr.sh && chmod 755 /opt/bbr.sh && /opt/bbr.sh
+	;;
+	12)
+	addsocks
 	;;
 	*)
 	echo "不存在的命令！重新执行"
