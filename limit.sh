@@ -55,20 +55,18 @@ systemctl restart docke
 echo "Docker 安装完成"
 }
 
-addsocks(){
-echo "开始配置Socks5"
-read -p "输入IP地址:(Default:120.79.15.130)" ip
-ip=${ip:-120.79.15.130}
-read -p "请输入Socks5端口:(Default:7890)" socks5port
-socks5port=${socks5port:-19520}
-read -p "请输入Http/Https端口:(Default:7890)" httpport
-httpport=${httpport:-19520}
-cat <<EOF > socks5.sh
-export ALL_PROXY=socks5://$ip:$socks5port
-export http_proxy="http://$ip:$httpport"
-export https_proxy="https://$ip:$httpport"
-EOF
-source /root/socks5.sh && chmod +x /root/socks5.sh && sh /root/socks5.sh && rm -rf socks5.sh && curl cip.cc && echo "检查代理地址是否正常,重新登录即可清除临时Socks设置"
+addbash(){
+echo "正在配置"
+read -p "请输入的局域网IP:(默认IP为192.168.10.1)" ip
+ip=${ip:-192.168.10.1}
+read -p "请输入Socks5的端口:(默认端口为7890)" sport
+sport=${sport:-7890}
+read -p "请输入Http的端口:(默认端口为7890)" hport
+hport=${hport:-7890}
+touch /root/bashsocks5.sh && chmod o+x bashsocks5.sh
+echo "export ALL_PROXY=socks5://$ip:$sport" >> /root/bashsocks5.sh && echo "export http_proxy="http://$ip:$hport"" >> /root/bashsocks5.sh && echo "export https_proxy="https://$ip:$hport"" >> /root/bashsocks5.sh
+clear && echo "正在应用临时的配置文件" 
+source /root/bashsocks5.sh && sh /root/bashsocks5.sh && rm -rf /root/bashsocks5.sh
 }
 
 # 主界面
@@ -134,7 +132,7 @@ case $num in
 	yum -y install wget && wget --no-check-certificate -O /opt/bbr.sh https://github.com/teddysun/across/raw/master/bbr.sh && chmod 755 /opt/bbr.sh && /opt/bbr.sh
 	;;
 	12)
-	addsocks
+	addbash
 	;;
 	*)
 	echo "不存在的命令！重新执行"
