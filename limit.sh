@@ -88,6 +88,7 @@ cat <<-EOF
 10.检测服务器网络信息以及相关流媒体设置(快速版 By LemonBenchIntl)
 11.一键开启BBR(By 秋水逸冰)
 12.添加临时Socsk
+13.ServerStatus 自用脚本
 
 ########## Welcome Limitauto V0.1 ##########
 
@@ -133,6 +134,9 @@ case $num in
 	;;
 	12)
 	addbash
+	;;
+	13)
+	bash <(curl -sL https://docs.2331314.xyz/api/serverstatus.sh)
 	;;
 	*)
 	echo "不存在的命令！重新执行"
