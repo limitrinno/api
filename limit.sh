@@ -27,7 +27,16 @@ echo ""
 cxsystem(){
 echo ""
 echo "========================================================="
-echo -ne "\033[33m 系统版本: \033[0m" && cat /etc/redhat-release && echo -ne "\033[33m CPU的型号: \033[0m" && cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c && echo -ne "\033[33m CPU的个数: \033[0m" && cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l && echo -ne "\033[33m CPU的核心数: \033[0m" && cat /proc/cpuinfo| grep "cpu cores"| uniq | awk '{ print $4}' && echo -ne "\033[33m CPU的线程数: \033[0m" && cat /proc/cpuinfo| grep "processor"| wc -l && echo -ne "\033[33m 系统内存容量: \033[0m" && free -mh | grep Mem | awk '{ print $2 }' && echo -e "\033[33m 系统信息（供应商）: \033[0m" && dmidecode |grep -A16 "System Information$" | grep Manufacturer &&echo -e "\033[33m 系统信息（序列号）: \033[0m" && dmidecode |grep -A16 "System Information$" | grep 'Serial Number' &&echo -e "\033[33m 主板信息（系统供应商）: \033[0m" && dmidecode |grep -A16 "Base Board Information$" | grep Manufacturer && echo -ne "\033[33m 主板信息（系统平台）: \033[0m" && dmidecode |grep -A16 "Base Board Information$" | grep Product
+echo -ne "\033[33m 系统版本: \033[0m" && cat /etc/redhat-release
+echo -ne "\033[33m CPU的型号: \033[0m" && cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+echo -ne "\033[33m CPU的个数: \033[0m" && cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
+echo -ne "\033[33m CPU的核心数: \033[0m" && cat /proc/cpuinfo| grep "cpu cores"| uniq | awk '{ print $4}'
+echo -ne "\033[33m CPU的线程数: \033[0m" && cat /proc/cpuinfo| grep "processor"| wc -l
+echo -ne "\033[33m 系统内存容量: \033[0m" && free -mh | grep Mem | awk '{ print $2 }'
+echo -e "\033[33m 系统信息（供应商）: \033[0m" && dmidecode |grep -A16 "System Information$" | grep Manufacturer
+echo -e "\033[33m 系统信息（序列号）: \033[0m" && dmidecode |grep -A16 "System Information$" | grep 'Serial Number'
+echo -e "\033[33m 主板信息（系统供应商）: \033[0m" && dmidecode |grep -A16 "Base Board Information$" | grep Manufacturer
+echo -ne "\033[33m 主板信息（系统平台）: \033[0m" && dmidecode |grep -A16 "Base Board Information$" | grep Product
 echo "========================================================="
 }
 
